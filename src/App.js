@@ -8,16 +8,17 @@ function App() {
   const [ageTerm, setAgeTerm] = React.useState('');
   const [genderTerm, setGenderTerm] = React.useState('');
   const [marriedTerm, setMarriedTerm] = React.useState('');
-
+  var minimum=0,maximum=0;
+  function inRange(x, min, max) {
+    return ((x-min)*(x-max) <= 0);
+}
   return (
     <div className="App">
       <center>
-        <h1>
-          Displaying dynamic data with filtering from json file 
-        </h1>
+        <h1>Displaying dynamic data with filtering from json file</h1>
       </center>
       <input
-        style={{ width: '310px',margin:"20px"}}
+        style={{ width: '310px', margin: '20px' }}
         type="text"
         placeholder="Name..."
         onChange={(event) => {
@@ -36,17 +37,21 @@ function App() {
         <option value="Others">Others</option>
       </select>
 
-      <input
-        type="text"
-        style={{ width: '310px',margin:"20px"}}
-        placeholder="Age..."
+      <select
+        style={{ width: '310px' }}
         onChange={(event) => {
           setAgeTerm(event.target.value);
         }}
-      />
+      >
+        <option value="">select age</option>
+        <option value="22">18-25</option>
+        <option value="31">26-50</option>
+        <option value="55">Above 51+</option>
+      </select>
+
 
       <select
-        style={{ width: '310px' ,marginBottom:"20px" }}
+        style={{ width: '310px', marginBottom: '20px' }}
         onChange={(event) => {
           setMarriedTerm(event.target.value);
         }}
@@ -55,10 +60,23 @@ function App() {
         <option value="true">Married</option>
         <option value="false">Unmarried</option>
       </select>
-      
-      {
-      data
+
+      {data
         .filter((val) => {
+          if(inRange(ageTerm,1,25))
+          {
+            minimum=1;
+            maximum=25;
+          }else if(inRange(ageTerm,26,50))
+          {
+            minimum=26;
+            maximum=50;
+          }
+          else{
+            minimum=51;
+            maximum=150;
+          }
+          console.log(maximum)
           if (
             searchTerm === '' &&
             ageTerm === '' &&
@@ -68,11 +86,13 @@ function App() {
             return val;
           } else if (
             val.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            val.age.toString().includes(ageTerm) &&
+            (val.age>=minimum&&val.age<=maximum)&&
             val.gender.toLowerCase().startsWith(genderTerm.toLowerCase()) &&
             val.isMarried.toString().includes(marriedTerm)
           ) {
+            
             return val;
+           
           }
         })
         .map((val, key) => {
