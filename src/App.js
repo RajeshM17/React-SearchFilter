@@ -14,6 +14,7 @@ function App() {
   function inRange(x, min, max) {
     return (x - min) * (x - max) <= 0;
   }
+
   React.useEffect(() => {
     const results = data.filter((person) => {
       var minimum = 1,
@@ -89,7 +90,7 @@ function App() {
               setMarriedTerm(event.target.value);
             }}
           >
-            <option value="">select Martial Status</option>
+            <option value="">select Marital Status</option>
             <option value="true">Married</option>
             <option value="false">Unmarried</option>
           </select>
@@ -98,17 +99,24 @@ function App() {
           </p>
 
           <Datatable data={searchResults} />
-          <input type="reset" value="Reset"  onClick={(event) => {
-              setSearchTerm("");
-              setAgeTerm("");
-              setGenderTerm("");
-              setMarriedTerm("")
+          <input
+            type="reset"
+            value="Reset"
+            onClick={(event) => {
+              setSearchTerm('');
+              setAgeTerm('');
+              setGenderTerm('');
+              setMarriedTerm('');
             }}
-            style={{backgroundColor: "#008CBA"}}></input>
+            style={{ backgroundColor: '#008CBA' }}
+          ></input>
 
-          <input type="submit" style={{backgroundColor: "#4CAF50"}} name="submit"></input>
+          <input
+            type="submit"
+            style={{ backgroundColor: '#4CAF50' }}
+            name="submit"
+          ></input>
         </form>
-        
       </center>
     </div>
   );
