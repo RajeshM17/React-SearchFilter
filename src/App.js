@@ -8,10 +8,11 @@ function App() {
   const [ageTerm, setAgeTerm] = React.useState('');
   const [genderTerm, setGenderTerm] = React.useState('');
   const [marriedTerm, setMarriedTerm] = React.useState('');
-  var minimum=0,maximum=0;
+  var minimum = 1,
+    maximum = 150;
   function inRange(x, min, max) {
-    return ((x-min)*(x-max) <= 0);
-}
+    return (x - min) * (x - max) <= 0;
+  }
   return (
     <div className="App">
       <center>
@@ -44,14 +45,13 @@ function App() {
         }}
       >
         <option value="">select age</option>
-        <option value="22">18-25</option>
+        <option value="22">1-25</option>
         <option value="31">26-50</option>
         <option value="55">Above 51+</option>
       </select>
 
-
       <select
-        style={{ width: '310px', marginBottom: '20px' }}
+        style={{ width: '310px', marhuhuhginBottom: '20px' }}
         onChange={(event) => {
           setMarriedTerm(event.target.value);
         }}
@@ -63,20 +63,17 @@ function App() {
 
       {data
         .filter((val) => {
-          if(inRange(ageTerm,1,25))
-          {
-            minimum=1;
-            maximum=25;
-          }else if(inRange(ageTerm,26,50))
-          {
-            minimum=26;
-            maximum=50;
+          if (inRange(ageTerm, 1, 25)) {
+            minimum = 1;
+            maximum = 25;
+          } else if (inRange(ageTerm, 26, 50)) {
+            minimum = 26;
+            maximum = 50;
+          } else if (inRange(ageTerm, 51, 150)) {
+            minimum = 51;
+            maximum = 150;
           }
-          else{
-            minimum=51;
-            maximum=150;
-          }
-          console.log(maximum)
+
           if (
             searchTerm === '' &&
             ageTerm === '' &&
@@ -86,13 +83,12 @@ function App() {
             return val;
           } else if (
             val.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-            (val.age>=minimum&&val.age<=maximum)&&
+            val.age >= minimum &&
+            val.age <= maximum &&
             val.gender.toLowerCase().startsWith(genderTerm.toLowerCase()) &&
             val.isMarried.toString().includes(marriedTerm)
           ) {
-            
             return val;
-           
           }
         })
         .map((val, key) => {
