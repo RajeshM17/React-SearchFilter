@@ -95,9 +95,9 @@ function App() {
             <option value="true">Married</option>
             <option value="false">Unmarried</option>
           </select>
-          <p>
+          
             <br></br>
-          </p>
+        
 
          
           <input
@@ -109,7 +109,7 @@ function App() {
               setGenderTerm('');
               setMarriedTerm('');
             }}
-            style={{ backgroundColor: '#008CBA' }}
+            style={{ backgroundColor: '#008CBA',marginBottom:"20px" }}
           ></input>
 
           {/* <input
@@ -117,6 +117,7 @@ function App() {
             style={{ backgroundColor: '#4CAF50' }}
             name="submit"
           ></input> */}
+         
            <Datatable data={searchResults} />
         </form>
       </center>
