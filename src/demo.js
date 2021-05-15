@@ -4,7 +4,7 @@ import React from 'react';
 import './style.css';
 import Datatable from './Datatable';
 
-function App() {
+function Demo() {
   const [searchTerm, setSearchTerm] = React.useState('');
   const [ageTerm, setAgeTerm] = React.useState('');
   const [genderTerm, setGenderTerm] = React.useState('');
@@ -18,7 +18,6 @@ function App() {
     const results = data.filter((person) => {
       var minimum = 1,
         maximum = 150;
-
       if (inRange(ageTerm, 1, 25)) {
         minimum = 1;
         maximum = 25;
@@ -43,7 +42,7 @@ function App() {
     setSearchResults(results);
   }, [searchTerm, marriedTerm, genderTerm, ageTerm]);
   return (
-    <div className="App">
+    <div className="Application">
       <center>
         <h1>Displaying Dynamic Data with Filtering from json file</h1>
 
@@ -98,15 +97,14 @@ function App() {
           </p>
 
           <Datatable data={searchResults} />
-          <input type="reset" value="Reset"  onClick={(event) => {
+          <input type="reset" style={{backgroundColor: "#4CAF50"}} value="Reset"  onClick={(event) => {
               setSearchTerm("");
               setAgeTerm("");
               setGenderTerm("");
               setMarriedTerm("")
-            }}
-            style={{backgroundColor: "#008CBA"}}></input>
+            }}></input>
 
-          <input type="submit" style={{backgroundColor: "#4CAF50"}} name="submit"></input>
+          <input type="submit" name="submit"></input>
         </form>
         
       </center>
@@ -114,4 +112,4 @@ function App() {
   );
 }
 
-export default App;
+export default Demo;
