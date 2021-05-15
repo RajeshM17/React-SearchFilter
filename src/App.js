@@ -14,7 +14,8 @@ function App() {
   function inRange(x, min, max) {
     return (x - min) * (x - max) <= 0;
   }
-
+  
+  
   React.useEffect(() => {
     const results = data.filter((person) => {
       var minimum = 1,
@@ -98,7 +99,7 @@ function App() {
             <br></br>
           </p>
 
-          <Datatable data={searchResults} />
+         
           <input
             type="reset"
             value="Reset"
@@ -111,11 +112,12 @@ function App() {
             style={{ backgroundColor: '#008CBA' }}
           ></input>
 
-          <input
+          {/* <input
             type="submit"
             style={{ backgroundColor: '#4CAF50' }}
             name="submit"
-          ></input>
+          ></input> */}
+           <Datatable data={searchResults} />
         </form>
       </center>
     </div>
