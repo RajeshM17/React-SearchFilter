@@ -32,7 +32,7 @@ function App() {
         maximum = 150;
       }
       return (
-        person.name.toLowerCase().includes(searchTerm) &&
+        person.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
         person.age >= minimum &&
         person.age <= maximum &&
         person.gender
