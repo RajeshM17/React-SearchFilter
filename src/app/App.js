@@ -1,8 +1,8 @@
 import './App.css';
-import data from './MOCK_DATA.json';
+import data from '../data/MOCK_DATA.json';
 import React from 'react';
-import './style.css';
-import Datatable from './Datatable';
+import "../assets/style.css";
+import Datatable from '../components/Datatable';
 
 function App() {
   const [searchTerm, setSearchTerm] = React.useState('');
@@ -14,8 +14,7 @@ function App() {
   function inRange(x, min, max) {
     return (x - min) * (x - max) <= 0;
   }
-  
-  
+
   React.useEffect(() => {
     const results = data.filter((person) => {
       var minimum = 1,
@@ -43,7 +42,9 @@ function App() {
       );
     });
     setSearchResults(results);
+    console.log(results);
   }, [searchTerm, marriedTerm, genderTerm, ageTerm]);
+ 
   return (
     <div className="App">
       <center>
@@ -95,11 +96,9 @@ function App() {
             <option value="true">Married</option>
             <option value="false">Unmarried</option>
           </select>
-          
-            <br></br>
-        
 
-         
+          <br></br>
+
           <input
             type="reset"
             value="Reset"
@@ -109,7 +108,7 @@ function App() {
               setGenderTerm('');
               setMarriedTerm('');
             }}
-            style={{ backgroundColor: '#008CBA',marginBottom:"20px" }}
+            style={{ backgroundColor: '#008CBA', marginBottom: '20px' }}
           ></input>
 
           {/* <input
@@ -117,8 +116,8 @@ function App() {
             style={{ backgroundColor: '#4CAF50' }}
             name="submit"
           ></input> */}
-         
-           <Datatable data={searchResults} />
+
+          <Datatable data={searchResults} />
         </form>
       </center>
     </div>
